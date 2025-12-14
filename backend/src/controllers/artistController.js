@@ -1,4 +1,4 @@
-const { Artist, Event } = require('../models/Event');
+const { Artist, Event } = require('../models');
 const { Op } = require('sequelize');
 
 // @desc    Get all artists with pagination and search
@@ -76,97 +76,6 @@ exports.getArtistById = async (req, res) => {
       res.status(200).json({
          success: true,
          data: artist
-      });
-   } catch (error) {
-      res.status(500).json({ 
-         success: false, 
-         message: error.message 
-      });
-   }
-};
-
-// @desc    Create new artist (ADMIN - Optional)
-// @route   POST /api/artists
-// @access  Private
-exports.createArtist = async (req, res) => {
-   try {
-      const { name, bio, image_url, performance_time, event_id } = req.body;
-
-      // Validation
-      if (!name || !bio || !performance_time || !event_id) {
-         return res.status(400).json({ 
-            success: false, 
-            message: 'Please provide all required fields' 
-         });
-      }
-
-      const artist = await Artist.create({
-         name,
-         bio,
-         image_url,
-         performance_time,
-         event_id
-      });
-
-      res.status(201).json({
-         success: true,
-         data: artist
-      });
-   } catch (error) {
-      res.status(500).json({ 
-         success: false, 
-         message: error.message 
-      });
-   }
-};
-
-// @desc    Update artist (ADMIN - Optional)
-// @route   PUT /api/artists/:id
-// @access  Private
-exports.updateArtist = async (req, res) => {
-   try {
-      const artist = await Artist.findByPk(req.params.id);
-
-      if (!artist) {
-         return res.status(404).json({ 
-            success: false, 
-            message: 'Artist not found' 
-         });
-      }
-
-      const updated = await artist.update(req.body);
-
-      res.status(200).json({
-         success: true,
-         data: updated
-      });
-   } catch (error) {
-      res.status(500).json({ 
-         success: false, 
-         message: error.message 
-      });
-   }
-};
-
-// @desc    Delete artist (ADMIN - Optional)
-// @route   DELETE /api/artists/:id
-// @access  Private
-exports.deleteArtist = async (req, res) => {
-   try {
-      const artist = await Artist.findByPk(req.params.id);
-
-      if (!artist) {
-         return res.status(404).json({ 
-            success: false, 
-            message: 'Artist not found' 
-         });
-      }
-
-      await artist.destroy();
-
-      res.status(200).json({
-         success: true,
-         message: 'Artist deleted successfully'
       });
    } catch (error) {
       res.status(500).json({ 

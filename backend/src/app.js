@@ -6,18 +6,10 @@ const app = express();
 const sequelize = require('./config/database');
 const errorHandler = require('./middlewares/errorHandler');
 
-// Import models
-const Event = require('./models/Event');
-const Artist = require('./models/Artist');
-const Booking = require('./models/Booking');
 
-// Initialize associations
-const models = { Event, Artist, Booking };
-Object.keys(models).forEach(modelName => {
-   if (models[modelName].associate) {
-      models[modelName].associate(models);
-   }
-});
+// Import models
+const { Event, Artist, Booking } = require('./models');
+
 
 // Middleware
 app.use(cors());

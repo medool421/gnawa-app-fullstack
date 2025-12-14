@@ -4,8 +4,8 @@ const {createBooking, getBookingByCode, getBookingsByEmail, getAllBookings, dele
 
 router.post('/', createBooking);
 router.get('/', getAllBookings);
-router.get('/:code', getBookingByCode);
 router.get('/email/:email', getBookingsByEmail);
+router.get('/:code', getBookingByCode);
 router.delete('/:code', deleteBooking);
 
 module.exports = router;

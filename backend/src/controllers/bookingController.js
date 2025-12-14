@@ -1,4 +1,4 @@
-const { Booking, Event } = require('../models/Event');
+const { Booking, Event } = require('../models');
 const { Op } = require('sequelize');
 
 // @desc    Create new booking
