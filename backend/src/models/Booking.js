@@ -30,7 +30,8 @@ const Booking = sequelize.define('Booking', {
    confirmation_code: {
       type: DataTypes.STRING(8),
       allowNull: false,
-      unique: true
+      unique: true,
+      defaultValue: () => generateConfirmationCode()
    },
    event_id: {
       type: DataTypes.INTEGER,
