@@ -51,9 +51,8 @@ exports.getAllArtists = async (req, res) => {
    }
 };
 
-// @desc    Get single artist by ID
 // @route   GET /api/artists/:id
-// @access  Public
+
 exports.getArtistById = async (req, res) => {
    try {
       const artist = await Artist.findByPk(req.params.id, {

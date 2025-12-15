@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 
 // @desc    Create new booking
 // @route   POST /api/bookings
-// @access  Public
+
 exports.createBooking = async (req, res) => {
    try {
       const { name, email, phone, tickets_count, event_id } = req.body;
